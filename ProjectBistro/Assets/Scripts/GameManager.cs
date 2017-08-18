@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+	//Static variables that we access throughout the game
 	public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
 	public static TileScript[,] mapArray; 
 	public static Vector2 mouseOver;
 
-	//Tile Selection for Setup 01
+	//Keeping track of tile variables
 	public static int allocatedTiles = 50;
 	public static int chosenTiles = 0;
 	public static bool eraseMode = false;
@@ -20,6 +21,11 @@ public class GameManager : MonoBehaviour {
 	public static int custNumber = 30;
 	public static List<GameObject> custList; 
 	public GameObject customerPrefab;
+
+	//Game variables that the user wants to keep track of
+	public static int money = 1000;
+	public static int[] foodPrices = { 5, 6, 4 }; //TODO: Let the player choose these values
+	public static int[] foodLeft = { 5, 5, 5 };
 
 	private bool mapGenerated = false;
 
@@ -55,6 +61,7 @@ public class GameManager : MonoBehaviour {
 			cust.transform.parent = this.transform;
 
 			cust.GetComponent<CustomerScript> ().ID = i;
+			cust.GetComponent<CustomerScript> ().UpdateCustomer ();
 			custList.Add (cust);
 		}
 	}

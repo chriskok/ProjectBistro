@@ -13,7 +13,7 @@ public class MainScript : MonoBehaviour {
 
 	IEnumerator seatRandomCust(){
 		for (int i = 0; i < 5; i++) {
-			yield return new WaitForSeconds (5.0f);
+			yield return new WaitForSeconds (2.0f);
 			os.AssignRandomSeat ();
 		}
 	}

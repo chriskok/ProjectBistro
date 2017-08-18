@@ -138,7 +138,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mg: {fileID: 1439870021}
-  custNumber: 10
   customerPrefab: {fileID: 1379159895343574, guid: 02261edab3bb3a541b81e2566906a733,
     type: 2}
 --- !u!4 &378028508

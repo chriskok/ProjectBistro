@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Waiter : MonoBehaviour {
 
+	//For Orders
 	public List<TileScript> currentPath = null;
+	public OrderScript orderHandler;
 
 	public Vector2 initialPos;
 	public int x;
 	public int y;
-
-	public OrderScript orderHandler;
+	public int orderTried = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -64,7 +65,7 @@ public class Waiter : MonoBehaviour {
 			//Make waiter walk back as soon as delivered
 			GeneratePathTo ((int)initialPos.x, (int)initialPos.y);
 		} else if (this.x == (int)initialPos.x && this.y == (int)initialPos.y) {
-			TakeOrder ();
+			TakeOrder (orderTried);
 		}
 
 		// Smoothly animate towards the correct map tile.
@@ -195,7 +196,7 @@ public class Waiter : MonoBehaviour {
 		}
 	}
 
-	public void TakeOrder(){
+	public void TakeOrder(int next){
 
 		if (SceneManager.GetActiveScene ().buildIndex != 0) {
 			orderHandler = GameObject.FindGameObjectWithTag ("OrderHandler").GetComponent<OrderScript> ();
@@ -203,11 +204,15 @@ public class Waiter : MonoBehaviour {
 
 		if (orderHandler != null) {
 			List<OrderScript.Order> tempOrderList = orderHandler.orderList;
-			if (tempOrderList.Count > 0) {
+			if (tempOrderList.Count > (0 + next)) {
 				//Remove the order from the list iff the path is generated successfully
-				if (GeneratePathTo (tempOrderList [0].x, tempOrderList [0].y)) {
-					orderHandler.orderList.RemoveAt (0);
-				} 
+				if (GeneratePathTo (tempOrderList [0 + next].x, tempOrderList [0 + next].y)) {
+					orderHandler.orderList.RemoveAt (0 + next);
+					orderTried = 0;
+				} else {
+					orderTried++;
+					Debug.Log ("Couldn't do it");
+				}
 			}
 		}
 	}
