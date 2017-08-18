@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
 	public static int chosenTiles = 0;
 	public static bool eraseMode = false;
 
-	public MapGenerator mg = null;
+	public static MapGenerator mg = null;
 
 	//Customer Instantiation
 	public static int custNumber = 30;
@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour {
 
 	//Game variables that the user wants to keep track of
 	public static int money = 1000;
-	public static int[] foodPrices = { 5, 6, 4 }; //TODO: Let the player choose these values
-	public static int[] foodAmount = { 5, 5, 5 };
+	public static int[] foodPrices = { 0, 0, 0 }; //TODO: Let the player choose these values
+	public static int[] foodAmount = { 0, 0, 0 };
 
 	//Amount and Price of Tables, Chairs and Waiters Consecutively
 	public static int[] itemAmount = {0,0,0};
@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		mg = GameObject.FindGameObjectWithTag ("Map").GetComponent<MapGenerator>();
+
 		if (!mapGenerated) {
 			mg.GenerateMap ();
 			mapGenerated = true;
@@ -119,5 +121,12 @@ public class GameManager : MonoBehaviour {
 	public static void SetEraseMode(bool em){
 		eraseMode = em;
 	}
-		
+
+	public static void MapSwitch(bool turnOn){
+		if (turnOn) {
+			mg.gameObject.SetActive (true);
+		} else {
+			mg.gameObject.SetActive (false);
+		}
+	}
 }

@@ -137,7 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c2bec3f6c022e4fbc91d8d55e8b69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mg: {fileID: 1439870021}
   customerPrefab: {fileID: 1379159895343574, guid: 02261edab3bb3a541b81e2566906a733,
     type: 2}
 --- !u!4 &378028508
@@ -760,7 +759,7 @@ GameObject:
   - component: {fileID: 1439870021}
   m_Layer: 0
   m_Name: Map
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

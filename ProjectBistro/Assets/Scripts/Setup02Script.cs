@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Setup02Script : MonoBehaviour {
 
 	public Button eraseButton;
 	public Text moneyText;
 	private Color initialEraseColor;
+	private GameObject map;
 
 	void Start(){
 		initialEraseColor = eraseButton.colors.normalColor;
 		if (GameManager.eraseMode == true) {
 			eraseButton.GetComponent<Image>().color = Color.red;
+		}
+
+		if (SceneManager.GetActiveScene ().buildIndex == 2) {
+			GameManager.MapSwitch (false);
+		} else {
+			GameManager.MapSwitch (true);
 		}
 	}
 

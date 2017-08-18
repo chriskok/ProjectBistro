@@ -13,14 +13,14 @@ public class Menu : MonoBehaviour {
 	public Button[] FoodButtons;
 	public Slider[] Setpro; 
 	public Text[] SetproText;
-	public int[] OffSetFood;
+	public bool[] OffSetFood;
 	public InputField inQuanity;
+	public Text reminder;
 	private int Budget;
 	private Food FastFood = new Food(0.15f,0);
 	private Food Italian = new Food(0.25f,0);
 	private Food Beverage = new Food(0.15f,0);
-	//private Food[] foods= new Food[3];
-	//foods[1] = 
+	private Food[] foods;
 	int totalCost;
 	public Text FoodText;
 	public Text CQ;
@@ -100,75 +100,71 @@ public class Menu : MonoBehaviour {
 	public void Start(){
 		OffInteractable ();
 		currentFoodChoice = -1;
-		Budget = 100000;
+		Budget = 1000;
 		CQ.text = "Old Quanity:";
 		Cost.text = "Cost:";
 		TCost.text = "Total Cost:";
 		SetBudgetText();
-		OffSetFood = new int[3];
+		OffSetFood = new bool[3];
 		for (int i = 0; i < 3; i++) {
-			OffSetFood [i] = 1;
+			OffSetFood [i] = false;
 		}
+		Food []tempFoods={FastFood,Italian,Beverage};
+		foods = tempFoods;
+		tempFoods = null;
 	}
 
 	public void Back(){
-		//SceneManager.LoadScene ();
+		//SceneManager.LoadScene ("");
 	}
 	public void Next(){
 		//SceneManager.LoadScene ();
 	}
+
 	public void Buy(){
 		int inQ = -1;
 		Int32.TryParse(inQuanity.text, out inQ);
 		if (inQ >0) {
-			switch (currentFoodChoice) {
-			case 0:
-				FastFood.AddQuan (inQ);
-				SetproText [3].text = FastFood.GetQuan ().ToString ();	
-				Budget -= (FastFood.GetCost () * inQ);
-				OffSetFood [0] = 0;
+			if (Budget - ((foods [currentFoodChoice]).GetCost () * inQ) < 0) {
+				reminder.text = "You are out of Budget!";
+			} else {
+				(foods[currentFoodChoice]).AddQuan (inQ);
+				SetproText[3].text =((foods[currentFoodChoice]).GetQuan ()).ToString ();
+				Budget -= ((foods [currentFoodChoice]).GetCost () * inQ);
+				OffSetFood [currentFoodChoice] = true;
 				SetBudgetText ();
-				break;
-			case 1:
-				Italian.AddQuan (inQ);
-				SetproText [3].text = Italian.GetQuan().ToString();
-				Budget -= (Italian.GetCost()*inQ);
-				OffSetFood [1] = 0;
-				SetBudgetText ();
-				break;
-			case 2:
-				Beverage.AddQuan (inQ);
-				SetproText [3].text = Beverage.GetQuan().ToString();
-				Budget -= (Beverage.GetCost()*inQ);
-				OffSetFood [2] = 0;
-				SetBudgetText ();
-				break;
+				OffInteractable ();
+
+				GameManager.foodAmount[currentFoodChoice] += inQ;
+				GameManager.money -= (foods [currentFoodChoice]).GetCost () * inQ;
+				//Debug.Log (GameManager.foodAmount[currentFoodChoice]);
 			}
-			OffInteractable ();
 		}
 	}
-	private void FoodUpdate(Food food){
-		Setpro [0].value = food.Getprice ();
-		Setpro [1].value = food.GetSize ();
-		Setpro [2].value = food.GetQual ();
+
+	private void FoodUpdate(){
+		Setpro [0].value = foods[currentFoodChoice].Getprice ();
+		Setpro [1].value = foods[currentFoodChoice].GetSize ();
+		Setpro [2].value = foods[currentFoodChoice].GetQual ();
 		for (int i = 0; i< SetproText.Length; i++) {
-			SetproTextMethod (i, food);
+			SetproTextMethod (i);
 		}
-		CQ.text = "Old Quanity: " +food.GetLQ().ToString();
+		CQ.text = "Old Quanity: " +foods[currentFoodChoice].GetLQ().ToString();
 	}
-	private void SetproTextMethod(int index,Food food){
+
+	private void SetproTextMethod(int index){
 		switch(index){
 		case 0:
-			SetproText [index].text = food.Getprice().ToString ();
+			SetproText [index].text = foods[currentFoodChoice].Getprice().ToString ();
 			break;
 		case 1:
-			SetproText [index].text = food.GetSize().ToString ();
+			SetproText [index].text = foods[currentFoodChoice].GetSize().ToString ();
 			break;
 		case 2:
-			SetproText [index].text = food.GetQual().ToString ();
+			SetproText [index].text = foods[currentFoodChoice].GetQual().ToString ();
 			break;
 		case 3:
-			SetproText [index].text = food.GetQuan ().ToString ();
+			SetproText [index].text = foods[currentFoodChoice].GetQuan ().ToString ();
 			break;
 		}
 	}
@@ -176,108 +172,65 @@ public class Menu : MonoBehaviour {
 		int inQ = -1;
 		Int32.TryParse(inQuanity.text, out inQ);
 		if (inQ > 0) {
-			switch (currentFoodChoice) {
-			case 0:
-				FastFood.tempQuan = inQ;
-				TCost.text = "Total Cost: \t\t" + (FastFood.GetCost ()*inQ).ToString();
-				break;
-			case 1:
-				Italian.tempQuan = inQ;
-				TCost.text = "Total Cost: \t\t" + (Italian.GetCost ()*inQ).ToString();
-				break;
-			case 2:
-				Beverage.tempQuan = inQ;
-				TCost.text = "Total Cost: \t\t" + (Beverage.GetCost ()*inQ).ToString();
-				break;
-			}
+			foods[currentFoodChoice].tempQuan = inQ;
+			TCost.text = "Total Cost: " + (foods[currentFoodChoice].GetCost()*inQ).ToString();
 		}
 	}
 	public void SetFastFood(){
 		currentFoodChoice = 0;
 		FoodText.text = "Fast Food";
-		FoodUpdate (FastFood);
-		SetQuality ();
+		FoodUpdate();
+		UpdateCost();
 		TotalCostUpdate ();
-		if (OffSetFood [0] == 1) {
+		if (OffSetFood [0] == false) {
 			OnInteractable ();
+		} else {
+			OffInteractable ();
 		}
 	}
 	public void SetItalian(){
 		currentFoodChoice = 1;
 		FoodText.text = "Italian";
-		FoodUpdate (Italian);
-		SetQuality ();
+		FoodUpdate ();
+		UpdateCost ();
 		TotalCostUpdate ();
-		if (OffSetFood [1] == 1) {
+		if (OffSetFood [1] == false) {
 			OnInteractable ();
+		} else {
+			OffInteractable ();
 		}
 	}
 	public void SetBeverage(){
 		currentFoodChoice = 2;
 		FoodText.text = "Beverage";
-		FoodUpdate (Beverage);
-		SetQuality ();
+		FoodUpdate ();
+		UpdateCost ();
 		TotalCostUpdate ();
-		if (OffSetFood [2] == 1) {
+		if (OffSetFood [2] == false) {
 			OnInteractable ();
+		} else {
+			OffInteractable ();
 		}
 	}
 	public void SetPrice(){
 		int price = (int)Setpro [0].value;
-		switch (currentFoodChoice) {
-		case 0:
-			FastFood.SetPrice(price);
-			SetproTextMethod (0, FastFood);
-			break;
-		case 1:
-			Italian.SetPrice(price);
-			SetproTextMethod (0, Italian);
-			break;
-		case 2:
-			Beverage.SetPrice(price);
-			SetproTextMethod (0, Beverage);
-			break;
-		}
+		foods[currentFoodChoice].SetPrice(price);
+		GameManager.foodPrices [currentFoodChoice] = price;
+		//Debug.Log (GameManager.foodPrices [currentFoodChoice]);
+		SetproTextMethod (0);
 	} 
+
 	public void SetSize(){
 		int size = (int)Setpro [1].value;
-		switch (currentFoodChoice) {
-		case 0:
-			FastFood.SetSize(size);
-			SetproTextMethod (1, FastFood);
-			break;
-		case 1:
-			Italian.SetSize(size);
-			SetproTextMethod (1, Italian);
-			break;
-		case 2:
-			Beverage.SetSize(size);
-			SetproTextMethod (1, Beverage);
-			break;
-		}
+		foods[currentFoodChoice].SetSize(size);
+		SetproTextMethod (1);
 	}
-	public void SetQuality(){
+
+	public void UpdateCost(){
 		int quality = (int)Setpro [2].value;
-		switch (currentFoodChoice) {
-		case 0:
-			FastFood.SetQual((int)quality);
-			SetproTextMethod (2, FastFood);
-			Cost.text = "Cost: " +(FastFood.GetCost()).ToString();
-			break;
-		case 1:
-			Italian.SetQual((int)quality);
-			SetproTextMethod (2, Italian);
-			Cost.text = "Cost: " +(Italian.GetCost()).ToString();
-			break;
-		case 2:
-			Beverage.SetQual((int)quality);
-			SetproTextMethod (2, Beverage);
-			Cost.text = "Cost: " +(Beverage.GetCost()).ToString();
-			break;
-		}
+		(foods[currentFoodChoice]).SetQual((int)quality);
+		SetproTextMethod (2);
+		Cost.text = "Cost: " +((foods[currentFoodChoice]).GetCost()).ToString();
 		TotalCostUpdate();
 	}
-
-
-
 }
