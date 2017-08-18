@@ -85,7 +85,7 @@ public class Menu : MonoBehaviour {
 		}
 	}
 	void SetBudgetText(){
-		BudgetText.text = "Budget: " +Budget.ToString();
+		BudgetText.text = "Budget: \t\t\t" +Budget.ToString();
 	}
 	private void OffInteractable(){
 		for(int i =0;i<Setpro.Length;i++){
@@ -100,10 +100,10 @@ public class Menu : MonoBehaviour {
 	public void Start(){
 		OffInteractable ();
 		currentFoodChoice = -1;
-		Budget = 1000;
-		CQ.text = "Old Quanity:";
-		Cost.text = "Cost:";
-		TCost.text = "Total Cost:";
+		Budget = GameManager.money;
+		CQ.text = "Old Quantity: \t\t";
+		Cost.text = "Cost: \t\t\t";
+		TCost.text = "Total Cost: \t\t";
 		SetBudgetText();
 		OffSetFood = new bool[3];
 		for (int i = 0; i < 3; i++) {
@@ -149,7 +149,7 @@ public class Menu : MonoBehaviour {
 		for (int i = 0; i< SetproText.Length; i++) {
 			SetproTextMethod (i);
 		}
-		CQ.text = "Old Quanity: " +foods[currentFoodChoice].GetLQ().ToString();
+		CQ.text = "Old Quantity: \t" +foods[currentFoodChoice].GetLQ().ToString();
 	}
 
 	private void SetproTextMethod(int index){
@@ -173,7 +173,7 @@ public class Menu : MonoBehaviour {
 		Int32.TryParse(inQuanity.text, out inQ);
 		if (inQ > 0) {
 			foods[currentFoodChoice].tempQuan = inQ;
-			TCost.text = "Total Cost: " + (foods[currentFoodChoice].GetCost()*inQ).ToString();
+			TCost.text = "Total Cost: \t\t\t" + (foods[currentFoodChoice].GetCost()*inQ).ToString();
 		}
 	}
 	public void SetFastFood(){
@@ -230,7 +230,7 @@ public class Menu : MonoBehaviour {
 		int quality = (int)Setpro [2].value;
 		(foods[currentFoodChoice]).SetQual((int)quality);
 		SetproTextMethod (2);
-		Cost.text = "Cost: " +((foods[currentFoodChoice]).GetCost()).ToString();
+		Cost.text = "Cost: \t\t\t\t\t" +((foods[currentFoodChoice]).GetCost()).ToString();
 		TotalCostUpdate();
 	}
 }

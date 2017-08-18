@@ -50,9 +50,11 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		mg = GameObject.FindGameObjectWithTag ("Map").GetComponent<MapGenerator>();
+		if (GameObject.FindGameObjectWithTag ("Map") != null) {
+			mg = GameObject.FindGameObjectWithTag ("Map").GetComponent<MapGenerator> ();
+		}
 
-		if (!mapGenerated) {
+		if (mg != null && !mapGenerated) {
 			mg.GenerateMap ();
 			mapGenerated = true;
 		}
@@ -123,10 +125,12 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public static void MapSwitch(bool turnOn){
-		if (turnOn) {
-			mg.gameObject.SetActive (true);
-		} else {
-			mg.gameObject.SetActive (false);
+		if (mg != null) {
+			if (turnOn) {
+				mg.gameObject.SetActive (true);
+			} else {
+				mg.gameObject.SetActive (false);
+			}
 		}
 	}
 }

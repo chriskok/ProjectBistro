@@ -129,7 +129,7 @@ public class OrderScript : MonoBehaviour {
 		// Send the customer back to the waiting zone and make the chair unoccupied
 		GameManager.custList [custID].transform.position = new Vector3 (31f,0,0);
 		GameManager.custList [custID].GetComponent<CustomerScript> ().isSeated = false;
-		//c.occupied = false;
+		c.occupied = false;
 
 		//Pay the player for the type of food purchased 
 		GameManager.money += GameManager.foodPrices [foodType];
