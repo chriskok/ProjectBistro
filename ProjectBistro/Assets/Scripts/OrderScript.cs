@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
+[System.Serializable]
 public class OrderScript : MonoBehaviour {
 
 	public List<Order> orderList;
+
+	public float timeToLeave;
 
 	// Use this for initialization
 	void Start () {
@@ -12,24 +16,25 @@ public class OrderScript : MonoBehaviour {
 	}
 
 	void Update(){
-		if (Input.GetKeyDown ("z")) {
-			AddOrder(7,4);
-		}
 	}
 
 	public class Order {
-		//public int food;
+		public int food;
 		public int x;
 		public int y;
+		public ChairModelScript c;
+		public int custID;
 
-		public Order(int x, int y){
-			//this.food = food;
+		public Order(int food, int x, int y, ChairModelScript c, int custID){
+			this.food = food;
 			this.x = x;
 			this.y = y;
+			this.c = c;
+			this.custID = custID;
 		}
 	}
 
-	public void AddOrder(int x, int y){
+	public void AddOrder(int x, int y, ChairModelScript c, int custID){
 
 		//Formula to make the customer order the cheaper food item more often
 		float[] percentages = new float[GameManager.foodPrices.Length];
@@ -55,22 +60,23 @@ public class OrderScript : MonoBehaviour {
 		float rand = Random.Range (0, 1f);
 
 		if (rand < percentages [0]) {
-			GameManager.foodLeft [0]--;
-			GameManager.money += GameManager.foodPrices [0];
-			Debug.Log ("Burger order recieved at " + x + "," + y + ". Burgers left: " + GameManager.foodLeft[0]);
+			GameManager.foodAmount [0]--;
+
+			orderList.Add (new Order (0, x, y, c, custID)); 
+			Debug.Log ("Burger order recieved at " + x + "," + y + ". Burgers left: " + GameManager.foodAmount[0]);
 
 		} else if (rand < percentages [0] + percentages [1]) {
-			GameManager.foodLeft [1]--;
-			GameManager.money += GameManager.foodPrices [1];
-			Debug.Log ("Pasta order recieved at " + x + "," + y + ". Pastas left: " + GameManager.foodLeft[1]);
+			GameManager.foodAmount [1]--;
+			//StartCoroutine (DeassignSeat (1, c, custID));
+			orderList.Add (new Order (1, x, y, c, custID)); 
+			Debug.Log ("Pasta order recieved at " + x + "," + y + ". Pastas left: " + GameManager.foodAmount[1]);
 		} else if (rand < 1) {
-			GameManager.foodLeft [2]--;
-			GameManager.money += GameManager.foodPrices [2];
-			Debug.Log ("Beverage order recieved at " + x + "," + y + ". Beverages left: " + GameManager.foodLeft[2]);
+			GameManager.foodAmount [2]--;
+			//StartCoroutine (DeassignSeat (2, c, custID));
+			orderList.Add (new Order (2, x, y, c, custID)); 
+			Debug.Log ("Beverage order recieved at " + x + "," + y + ". Beverages left: " + GameManager.foodAmount[2]);
 		}
-
-
-		orderList.Add (new Order (x, y)); 
+			
 		//TODO: give the order to the closest free waiter. 
 	}
 
@@ -104,13 +110,28 @@ public class OrderScript : MonoBehaviour {
 
 
 			Vector2 freeSpacePosition = c [randomSeat].GetFreeSpace ();
+			c [randomSeat].occupied = true;
+
 			GameManager.custList [randomCust].transform.position = c [randomSeat].transform.position;
 			GameManager.custList [randomCust].transform.LookAt (c [randomSeat].tableModel.transform);
-			c [randomSeat].occupied = true;
 			GameManager.custList [randomCust].GetComponent<CustomerScript> ().isSeated = true;
-			AddOrder ((int)freeSpacePosition.x, (int)freeSpacePosition.y);
+
+			AddOrder ((int)freeSpacePosition.x, (int)freeSpacePosition.y, c[randomSeat], randomCust);
 		} else {
 			Debug.Log ("No chairs to seat customers");
 		}
+	}
+
+	public IEnumerator DeassignSeat(int foodType, ChairModelScript c, int custID){
+
+		yield return new WaitForSeconds (timeToLeave);
+
+		// Send the customer back to the waiting zone and make the chair unoccupied
+		GameManager.custList [custID].transform.position = new Vector3 (31f,0,0);
+		GameManager.custList [custID].GetComponent<CustomerScript> ().isSeated = false;
+		//c.occupied = false;
+
+		//Pay the player for the type of food purchased 
+		GameManager.money += GameManager.foodPrices [foodType];
 	}
 }

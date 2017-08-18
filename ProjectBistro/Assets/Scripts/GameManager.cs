@@ -25,7 +25,11 @@ public class GameManager : MonoBehaviour {
 	//Game variables that the user wants to keep track of
 	public static int money = 1000;
 	public static int[] foodPrices = { 5, 6, 4 }; //TODO: Let the player choose these values
-	public static int[] foodLeft = { 5, 5, 5 };
+	public static int[] foodAmount = { 5, 5, 5 };
+
+	//Amount and Price of Tables, Chairs and Waiters Consecutively
+	public static int[] itemAmount = {0,0,0};
+	public static int[] itemPrices = { 100, 50, 200 }; //TODO: Make waiters price go up with amount
 
 	private bool mapGenerated = false;
 

@@ -66,8 +66,23 @@ public class TileScript : MonoBehaviour {
 			chosen = false;
 			itemSet = false;
 			if (it != ItemScript.itemType.blank) {
+				switch (this.it) {
+				case ItemScript.itemType.table:
+					GameManager.itemAmount [0]--;
+					GameManager.money += GameManager.itemPrices [0];
+					break;
+				case ItemScript.itemType.chair:
+					GameManager.itemAmount [1]--;
+					GameManager.money += GameManager.itemPrices [1];
+					break;
+				case ItemScript.itemType.waiter:
+					GameManager.itemAmount [2]--;
+					GameManager.money += GameManager.itemPrices [2];
+					break;
+				}
+
 				it = ItemScript.itemType.blank;
-			}
+			} 
 			if (currentModel != null) {
 				Destroy (currentModel);
 			}
@@ -96,6 +111,8 @@ public class TileScript : MonoBehaviour {
 						c.UpdateTableChosen(currentModel);
 					}
 				}
+				GameManager.itemAmount [0]++;
+				GameManager.money -= GameManager.itemPrices [0];
 			}
 
 			if (it == ItemScript.itemType.chair) {
@@ -105,11 +122,16 @@ public class TileScript : MonoBehaviour {
 						c.UpdateTableChosen(t.currentModel);
 					}
 				}
+				GameManager.itemAmount [1]++;
+				GameManager.money -= GameManager.itemPrices [1];
 			}
 
 			//Wont set an item down if it's waiter: will cause blockage.
 			if (it != ItemScript.itemType.waiter) {
 				itemSet = true;
+			} else if (it == ItemScript.itemType.waiter) {
+				GameManager.itemAmount [2]++;
+				GameManager.money -= GameManager.itemPrices [2];
 			}
 		} else {
 			Debug.Log ("Tile has not been chosen");

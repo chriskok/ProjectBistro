@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 694868691}
   - component: {fileID: 694868690}
   m_Layer: 5
-  m_Name: BudgetText
+  m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,7 +701,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Budget: $500'
+  m_Text: 'Money: $500'
 --- !u!222 &694868691
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1455,6 +1455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eraseButton: {fileID: 667604905}
+  moneyText: {fileID: 694868690}
 --- !u!4 &1642123806
 Transform:
   m_ObjectHideFlags: 0

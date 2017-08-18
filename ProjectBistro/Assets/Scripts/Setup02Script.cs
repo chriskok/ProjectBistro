@@ -6,12 +6,20 @@ using UnityEngine.UI;
 public class Setup02Script : MonoBehaviour {
 
 	public Button eraseButton;
+	public Text moneyText;
 	private Color initialEraseColor;
 
 	void Start(){
 		initialEraseColor = eraseButton.colors.normalColor;
 		if (GameManager.eraseMode == true) {
 			eraseButton.GetComponent<Image>().color = Color.red;
+		}
+	}
+
+	void Update(){
+		if (moneyText != null) {
+			//GameManager.money = initialMoney - GameManager.itemAmount [0] * GameManager.itemPrices [0] - GameManager.itemAmount [1] * GameManager.itemPrices [1] - GameManager.itemAmount [2] * GameManager.itemPrices [2];
+			moneyText.text = "Money: $" + GameManager.money;
 		}
 	}
 

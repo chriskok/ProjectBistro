@@ -12,7 +12,8 @@ public class Waiter : MonoBehaviour {
 	public Vector2 initialPos;
 	public int x;
 	public int y;
-	public int orderTried = 0;
+	private int orderTried = 0;
+	private OrderScript.Order currentOrder;
 
 	// Use this for initialization
 	void Start () {
@@ -50,7 +51,6 @@ public class Waiter : MonoBehaviour {
 
 				Debug.DrawLine(start, end, Color.red);
 
-
 				currNode++;
 			}
 		}
@@ -64,6 +64,7 @@ public class Waiter : MonoBehaviour {
 		} else if ((currentPath == null || currentPath.Count == 0) && (this.x != (int)initialPos.x || this.y != (int)initialPos.y)) {
 			//Make waiter walk back as soon as delivered
 			GeneratePathTo ((int)initialPos.x, (int)initialPos.y);
+			StartCoroutine (orderHandler.DeassignSeat (currentOrder.food, currentOrder.c, currentOrder.custID));
 		} else if (this.x == (int)initialPos.x && this.y == (int)initialPos.y) {
 			TakeOrder (orderTried);
 		}
@@ -207,6 +208,8 @@ public class Waiter : MonoBehaviour {
 			if (tempOrderList.Count > (0 + next)) {
 				//Remove the order from the list iff the path is generated successfully
 				if (GeneratePathTo (tempOrderList [0 + next].x, tempOrderList [0 + next].y)) {
+					OrderScript.Order o = tempOrderList [0 + next];
+					currentOrder = new OrderScript.Order (o.food, o.x, o.y, o.c, o.custID); 
 					orderHandler.orderList.RemoveAt (0 + next);
 					orderTried = 0;
 				} else {

@@ -1221,6 +1221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20da14a90446ff4468cb1a3593bf0467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moneyText: {fileID: 694868690}
+  timeText: {fileID: 1804217835}
 --- !u!81 &1150600486
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1444,6 +1446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eraseButton: {fileID: 667604905}
+  moneyText: {fileID: 0}
 --- !u!4 &1642123806
 Transform:
   m_ObjectHideFlags: 0
@@ -1748,6 +1751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6a3d8a1e56749418ab439c13c1e7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeToLeave: 2
 --- !u!4 &1913485554
 Transform:
   m_ObjectHideFlags: 0
