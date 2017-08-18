@@ -133,5 +133,7 @@ public class OrderScript : MonoBehaviour {
 
 		//Pay the player for the type of food purchased 
 		GameManager.money += GameManager.foodPrices [foodType];
+
+		//TODO: Don't take orders that have negatives and deassign the seat anyway.
 	}
 }

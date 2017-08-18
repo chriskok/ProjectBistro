@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MainScript : MonoBehaviour {
 
@@ -18,8 +19,8 @@ public class MainScript : MonoBehaviour {
 	}
 
 	IEnumerator seatRandomCust(){
-		for (int i = 0; i < 5; i++) {
-			yield return new WaitForSeconds (2);
+		while (true){
+			yield return new WaitForSeconds (4);
 			os.AssignRandomSeat ();
 		}
 	}
@@ -31,5 +32,12 @@ public class MainScript : MonoBehaviour {
 		timer += Time.deltaTime;
 		string seconds = (timer % 60).ToString ("00");
 		timeText.text = "Time: " + seconds;
+
+		//TODO: set public var for timePerDay and timePerSeat
+		//Time per day for now is 60
+		if (timer > 60f) {
+			Debug.Log ("Day Over!");
+			SceneManager.LoadScene (1);
+		}
 	}
 }
