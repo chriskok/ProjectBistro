@@ -24,11 +24,12 @@ public class GameManager : MonoBehaviour {
 
 	//Game variables that the user wants to keep track of
 	public static int money = 1000;
-	public static int[] foodPrices = { 0, 0, 0 }; //TODO: Let the player choose these values
+	public static int[] foodPrices = { 1, 1, 1 }; //TODO: Let the player choose these values
 	public static int[] foodAmount = { 0, 0, 0 };
+	public static int day = 1;
 
 	//Amount and Price of Tables, Chairs and Waiters Consecutively
-	public static int[] itemAmount = {0,0,0};
+	public static int[] itemAmount = { 0, 0, 0 };
 	public static int[] itemPrices = { 100, 50, 200 }; //TODO: Make waiters price go up with amount
 
 	private bool mapGenerated = false;
@@ -130,6 +131,17 @@ public class GameManager : MonoBehaviour {
 				mg.gameObject.SetActive (true);
 			} else {
 				mg.gameObject.SetActive (false);
+			}
+		}
+	}
+
+	public void ClearCustomers(){
+		CustomerScript[] cs = this.GetComponentsInChildren<CustomerScript> ();
+
+		foreach (CustomerScript c in cs) {
+			if (c.isSeated) {
+				c.transform.position = new Vector3 (30f, 0, 0);
+				c.isSeated = false;
 			}
 		}
 	}

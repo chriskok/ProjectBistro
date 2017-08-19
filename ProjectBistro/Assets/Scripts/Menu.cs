@@ -65,6 +65,9 @@ public class Menu : MonoBehaviour {
 		public void SetPrice(int price){
 			this.price = price;
 		}
+		public void SetLastQuantity(int LQ){
+			this.lastQuanity = LQ;
+		}
 		public int GetQuan(){
 			return quanity;
 		}
@@ -84,6 +87,7 @@ public class Menu : MonoBehaviour {
 			return lastQuanity;
 		}
 	}
+
 	void SetBudgetText(){
 		BudgetText.text = "Budget: \t\t\t" +Budget.ToString();
 	}
@@ -101,9 +105,9 @@ public class Menu : MonoBehaviour {
 		OffInteractable ();
 		currentFoodChoice = -1;
 		Budget = GameManager.money;
-		CQ.text = "Old Quantity: \t\t";
-		Cost.text = "Cost: \t\t\t";
-		TCost.text = "Total Cost: \t\t";
+		CQ.text = "Old Quantity: ";
+		Cost.text = "Cost: ";
+		TCost.text = "Total Cost: ";
 		SetBudgetText();
 		OffSetFood = new bool[3];
 		for (int i = 0; i < 3; i++) {
@@ -112,6 +116,8 @@ public class Menu : MonoBehaviour {
 		Food []tempFoods={FastFood,Italian,Beverage};
 		foods = tempFoods;
 		tempFoods = null;
+
+		//Update last quantity when the scene starts
 	}
 
 	public void Back(){
@@ -137,7 +143,6 @@ public class Menu : MonoBehaviour {
 
 				GameManager.foodAmount[currentFoodChoice] += inQ;
 				GameManager.money -= (foods [currentFoodChoice]).GetCost () * inQ;
-				//Debug.Log (GameManager.foodAmount[currentFoodChoice]);
 			}
 		}
 	}
@@ -149,6 +154,8 @@ public class Menu : MonoBehaviour {
 		for (int i = 0; i< SetproText.Length; i++) {
 			SetproTextMethod (i);
 		}
+
+		foods [currentFoodChoice].SetLastQuantity (GameManager.foodAmount [currentFoodChoice]);
 		CQ.text = "Old Quantity: \t" +foods[currentFoodChoice].GetLQ().ToString();
 	}
 
@@ -216,7 +223,6 @@ public class Menu : MonoBehaviour {
 		int price = (int)Setpro [0].value;
 		foods[currentFoodChoice].SetPrice(price);
 		GameManager.foodPrices [currentFoodChoice] = price;
-		//Debug.Log (GameManager.foodPrices [currentFoodChoice]);
 		SetproTextMethod (0);
 	} 
 

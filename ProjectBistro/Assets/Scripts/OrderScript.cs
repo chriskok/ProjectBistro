@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class OrderScript : MonoBehaviour {
@@ -58,25 +58,40 @@ public class OrderScript : MonoBehaviour {
 		}
 
 		float rand = Random.Range (0, 1f);
+		bool randChosen = false;
 
-		if (rand < percentages [0]) {
-			GameManager.foodAmount [0]--;
+		while (!randChosen) {
 
-			orderList.Add (new Order (0, x, y, c, custID)); 
-			Debug.Log ("Burger order recieved at " + x + "," + y + ". Burgers left: " + GameManager.foodAmount[0]);
+			if (rand < percentages [0] && GameManager.foodAmount [0] > 0) {
+				GameManager.foodAmount [0]--;
+				orderList.Add (new Order (0, x, y, c, custID)); 
 
-		} else if (rand < percentages [0] + percentages [1]) {
-			GameManager.foodAmount [1]--;
-			//StartCoroutine (DeassignSeat (1, c, custID));
-			orderList.Add (new Order (1, x, y, c, custID)); 
-			Debug.Log ("Pasta order recieved at " + x + "," + y + ". Pastas left: " + GameManager.foodAmount[1]);
-		} else if (rand < 1) {
-			GameManager.foodAmount [2]--;
-			//StartCoroutine (DeassignSeat (2, c, custID));
-			orderList.Add (new Order (2, x, y, c, custID)); 
-			Debug.Log ("Beverage order recieved at " + x + "," + y + ". Beverages left: " + GameManager.foodAmount[2]);
+				Debug.Log ("Burger order recieved at " + x + "," + y + ". Burgers left: " + GameManager.foodAmount [0]);
+				randChosen = true;
+			} else if (rand < percentages [0] + percentages [1] && GameManager.foodAmount [1] > 0) {
+				GameManager.foodAmount [1]--;
+				orderList.Add (new Order (1, x, y, c, custID)); 
+
+				Debug.Log ("Pasta order recieved at " + x + "," + y + ". Pastas left: " + GameManager.foodAmount [1]);
+				randChosen = true;
+			} else if (rand < 1 && GameManager.foodAmount [2] > 0) {
+				GameManager.foodAmount [2]--;
+				orderList.Add (new Order (2, x, y, c, custID)); 
+
+				Debug.Log ("Beverage order recieved at " + x + "," + y + ". Beverages left: " + GameManager.foodAmount [2]);
+				randChosen = true;
+			} else if (GameManager.foodAmount [0] + GameManager.foodAmount [1] + GameManager.foodAmount [2] <= 0) {
+				Debug.Log ("Ran out of food!");
+				GameManager.day++;
+				GameObject.FindGameObjectWithTag ("GM").GetComponent<GameManager>().ClearCustomers();
+				randChosen = true;
+				SceneManager.LoadScene (2);
+			} else {
+				rand = Random.Range (0, 1f);
+				//Debug.Log ("new rand: " + rand);
+			}
 		}
-			
+
 		//TODO: give the order to the closest free waiter. 
 	}
 

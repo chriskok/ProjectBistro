@@ -11,16 +11,25 @@ public class MainScript : MonoBehaviour {
 	//For UI 
 	public Text moneyText;
 	public Text timeText;
+	public Text dayText;
+
+	public float timePerDay;
+	public float timePerSeating;
 	float timer = 0;
 
 	void Start(){
 		StartCoroutine (seatRandomCust());
 		os = GameObject.FindGameObjectWithTag ("OrderHandler").GetComponent<OrderScript> ();
+		if (GameManager.day < 10) {
+			dayText.text = "Day 0" + GameManager.day;
+		} else {
+			dayText.text = "Day " + GameManager.day;
+		}
 	}
 
 	IEnumerator seatRandomCust(){
 		while (true){
-			yield return new WaitForSeconds (4);
+			yield return new WaitForSeconds (timePerSeating);
 			os.AssignRandomSeat ();
 		}
 	}
@@ -35,8 +44,9 @@ public class MainScript : MonoBehaviour {
 
 		//TODO: set public var for timePerDay and timePerSeat
 		//Time per day for now is 60
-		if (timer > 60f) {
+		if (timer > timePerDay) {
 			Debug.Log ("Day Over!");
+			GameManager.day++;
 			SceneManager.LoadScene (1);
 		}
 	}

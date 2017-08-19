@@ -1,0 +1,123 @@
+Initialize engine version: 2017.1.0f3 (472613c02cf7)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 860M (ID=0x1392)
+    Vendor:   NVIDIA
+    VRAM:     4064 MB
+    Driver:   21.21.13.7654
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\User\Desktop\GAMA\1. Projects\21. ProjectBistro\ProjectBistro Game Builds\ProjectBistroV1.0_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\User\Desktop\GAMA\1. Projects\21. ProjectBistro\ProjectBistro Game Builds\ProjectBistroV1.0_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Desktop\GAMA\1. Projects\21. ProjectBistro\ProjectBistro Game Builds\ProjectBistroV1.0_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\User\Desktop\GAMA\1. Projects\21. ProjectBistro\ProjectBistro Game Builds\ProjectBistroV1.0_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Desktop\GAMA\1. Projects\21. ProjectBistro\ProjectBistro Game Builds\ProjectBistroV1.0_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\User\Desktop\GAMA\1. Projects\21. ProjectBistro\ProjectBistro Game Builds\ProjectBistroV1.0_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Desktop\GAMA\1. Projects\21. ProjectBistro\ProjectBistro Game Builds\ProjectBistroV1.0_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\User\Desktop\GAMA\1. Projects\21. ProjectBistro\ProjectBistro Game Builds\ProjectBistroV1.0_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Desktop\GAMA\1. Projects\21. ProjectBistro\ProjectBistro Game Builds\ProjectBistroV1.0_Data\Managed\UnityEngine.Timeline.dll (this message is harmless)
+Loading C:\Users\User\Desktop\GAMA\1. Projects\21. ProjectBistro\ProjectBistro Game Builds\ProjectBistroV1.0_Data\Managed\UnityEngine.Timeline.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Desktop\GAMA\1. Projects\21. ProjectBistro\ProjectBistro Game Builds\ProjectBistroV1.0_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\User\Desktop\GAMA\1. Projects\21. ProjectBistro\ProjectBistro Game Builds\ProjectBistroV1.0_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: C:\Users\User\Desktop\GAMA\1. Projects\21. ProjectBistro\ProjectBistro Game Builds\ProjectBistroV1.0_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\User\Desktop\GAMA\1. Projects\21. ProjectBistro\ProjectBistro Game Builds\ProjectBistroV1.0_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.119 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 3.166952 ms
+Setting up 4 worker threads for Enlighten.
+  Thread -> id: 3d60 -> priority: 1 
+  Thread -> id: 3e90 -> priority: 1 
+  Thread -> id: 1be0 -> priority: 1 
+  Thread -> id: 4750 -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 6.055144 ms
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 1656.
+Total: 0.769773 ms (FindLiveObjects: 0.110847 ms CreateObjectMapping: 0.042696 ms MarkObjects: 0.468843 ms  DeleteObjects: 0.146564 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.270960 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 1887.
+Total: 0.959446 ms (FindLiveObjects: 0.153133 ms CreateObjectMapping: 0.042286 ms MarkObjects: 0.751299 ms  DeleteObjects: 0.011084 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.153724 ms
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 1715.
+Total: 1.618372 ms (FindLiveObjects: 0.218821 ms CreateObjectMapping: 0.109615 ms MarkObjects: 1.221785 ms  DeleteObjects: 0.065687 ms)
+
+Pasta order recieved at 5,5. Pastas left: 9
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Beverage order recieved at 5,5. Beverages left: 9
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Pasta order recieved at 5,5. Pastas left: 8
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Beverage order recieved at 5,3. Beverages left: 8
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Beverage order recieved at 5,5. Beverages left: 7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Beverage order recieved at 5,5. Beverages left: 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Pasta order recieved at 5,5. Pastas left: 7
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Pasta order recieved at 5,3. Pastas left: 6
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Pasta order recieved at 5,3. Pastas left: 5
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Burger order recieved at 5,5. Burgers left: 9
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Pasta order recieved at 5,3. Pastas left: 4
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Pasta order recieved at 5,3. Pastas left: 3
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Burger order recieved at 5,3. Burgers left: 8
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Pasta order recieved at 5,5. Pastas left: 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Day Over!
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.549721 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 1716.
+Total: 1.742768 ms (FindLiveObjects: 0.248790 ms CreateObjectMapping: 0.133016 ms MarkObjects: 1.335506 ms  DeleteObjects: 0.022580 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.328026 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 1887.
+Total: 0.832998 ms (FindLiveObjects: 0.132195 ms CreateObjectMapping: 0.040233 ms MarkObjects: 0.649483 ms  DeleteObjects: 0.010263 ms)
+

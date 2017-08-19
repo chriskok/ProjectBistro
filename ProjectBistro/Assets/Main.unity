@@ -685,7 +685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c2bec3f6c022e4fbc91d8d55e8b69c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mg: {fileID: 1184097270}
   customerPrefab: {fileID: 1379159895343574, guid: 02261edab3bb3a541b81e2566906a733,
     type: 2}
 --- !u!4 &721814026
@@ -1223,6 +1222,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyText: {fileID: 694868690}
   timeText: {fileID: 1804217835}
+  dayText: {fileID: 1659056097}
+  timePerDay: 60
+  timePerSeating: 4
 --- !u!81 &1150600486
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1492,8 +1494,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -413.08228, y: -14}
-  m_SizeDelta: {x: 300, y: 150}
+  m_AnchoredPosition: {x: -402, y: 0}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1659056097
 MonoBehaviour:
@@ -1516,7 +1518,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: df81fea93a984b842b902f4f470de31e, type: 3}
-    m_FontSize: 55
+    m_FontSize: 60
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 0
