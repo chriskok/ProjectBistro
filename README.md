@@ -7,11 +7,9 @@ Restaurant manager game in Unity3D. Set up, build and manage your restaurant, wa
 
 ## Installation 
 
-1. Download the zip file here: -
+1. Download the .exe and _Data files here: https://github.com/chriskok/ProjectBistro/tree/master/ProjectBistro%20Game%20Builds
 
-2. Unzip the file. 
-
-3. Run the .exe file or .apk file (for mobile devices) and follow the tutorial.
+2. Make sure they're in the same place on your computer and run the .exe file. 
 
 ---
 
