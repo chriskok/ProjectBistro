@@ -16,15 +16,19 @@ Restaurant manager game in Unity3D. Set up, build and manage your restaurant, wa
 ## Screenshots
 
 <img src="https://github.com/chriskok/ProjectBistro/blob/master/Screenshots/1.JPG" width = 500>
+
 User selects tiles, shaping their restaurant.
 
 <img src="https://github.com/chriskok/ProjectBistro/blob/master/Screenshots/2.JPG" width = 500>
+
 User selects the layout of their restaurant, placing the waiters, tables and chairs. 
 
 <img src="https://github.com/chriskok/ProjectBistro/blob/master/Screenshots/3.JPG" width = 500>
+
 User chooses the details of their menu (price, size and quality)
 
 <img src="https://github.com/chriskok/ProjectBistro/blob/master/Screenshots/4.JPG" width = 500>
+
 Customers spawn in random seats and the waiter delivers the food (if possible for the waiter). 
 
 ---
