@@ -7,7 +7,7 @@ Restaurant manager game in Unity3D. Set up, build and manage your restaurant, wa
 
 ## Installation 
 
-1. Download the .exe and _Data files here: https://github.com/chriskok/ProjectBistro/tree/master/ProjectBistro%20Game%20Builds
+1. Download the .exe and _Data files here: [ProjectBistro Game Builds](https://github.com/chriskok/ProjectBistro/tree/master/ProjectBistro%20Game%20Builds)
 
 2. Make sure they're in the same place on your computer and run the .exe file. 
 
@@ -46,6 +46,22 @@ Customers spawn in random seats and the waiter delivers the food (if possible fo
 - Add a log for all the orders that come in as well as to display other messages we may want the user to see.
 - Provide decorations to the restaurant for the user to pick. 
 - Add the ability for the player to buy more tiles.
+- Optimized for users on mobile platforms. 
+
+---
+
+## Lessons Learnt
+
+### Optimization
+- The OnMouseX() functions work okay with touch screen as they imply touches to be mouse clicks but are very slow for performance because of the insane amounts of Raycasts being cast each frame. Hence, for future use we should implement the OnTouch() functions in greater detail (first with the customers and then updating the previous OnMouseX() functions). 
+
+### Communication
+- A lot of time could be saved if we discussed as a team what exactly our variable names and conventions would be before starting the project. 
+- We could also communicate better about what kind of algorigthms we'd be using to do certain things in the game that we could individually work around easily. 
+
+### Minor Details
+- When using the Singleton Pattern, remember that other objects which require the objects using that don't get destroyed must use the gameObject.Find() function instead of just making it a public variable. 
+- Remember that Start() gets called everytime you load a scene but later than when the Singleton Pattern object starts to instantiate objects. 
 
 ---
 
