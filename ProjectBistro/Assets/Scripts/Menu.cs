@@ -89,7 +89,7 @@ public class Menu : MonoBehaviour {
 	}
 
 	void SetBudgetText(){
-		BudgetText.text = "Budget: \t\t\t" +Budget.ToString();
+		BudgetText.text = "Money: \t\t\t" +Budget.ToString();
 	}
 	private void OffInteractable(){
 		for(int i =0;i<Setpro.Length;i++){
